@@ -1,0 +1,43 @@
+server:
+  port: 80
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      routes:
+        - id: product_route
+          uri: lb://service-product
+          predicates:
+            - Path=/product-serv/**
+            - Age=18,60
+          filters:
+            - StripPrefix=1
+            - SetStatus=2000
+            - Log=true
+#      discovery:
+#        locator:
+#          enabled: true
+#spring:
+#  application:
+#    name: gateway
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#      routes:
+#        - id: product_route
+#          uri: lb://service-product
+#          predicates:
+#            - Path=/product-serv/**
+#            - Age=18,60
+#          filters:
+#            - StripPrefix=1
+

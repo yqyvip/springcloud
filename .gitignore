@@ -1,0 +1,6 @@
+# Project exclude paths
+/api-gateway/target/
+/shop-common/target/
+/shop-order/target/
+/shop-user/target/
+/shop_product/target/
